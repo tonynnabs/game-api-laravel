@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gamers Cargo</title>
     <link rel="stylesheet" href="/css/app.css">
+    @livewireStyles
 </head>
 
 <body class="bg-gray-900 text-white">
@@ -54,6 +55,7 @@
             Powered by <a href="#" class="underline hover:text-gray-400">Tonynnabs</a>
         </div>
     </footer>
+    @livewireScripts
 </body>
 
 </html>
