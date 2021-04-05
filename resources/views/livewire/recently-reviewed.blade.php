@@ -2,7 +2,8 @@
     @forelse ($recentlyReviewed as $game)
         <div class="game bg-gray-800 rounded-lg shadow-md flex p-6">
             <div class="relative flex-none">
-                <a href="#"><img src="{{ Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) }}" alt="image"
+                <a href="{{ route('game.show', $game['slug']) }}"><img
+                        src="{{ Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) }}" alt="image"
                         class="w-48 hover:opacity-75 transition ease-in-out duration-200"></a>
 
                 @if (isset($game['rating']))
@@ -15,7 +16,7 @@
 
             </div>
             <div class="ml-12">
-                <a href="#"
+                <a href="{{ route('game.show', $game['slug']) }}"
                     class="block text-lg font-semi-bold leading-tight hover:text-gray-400 mt-4">{{ $game['name'] }}</a>
                 <div class="text-gray-400 mt-1">
                     @foreach ($game['platforms'] as $platform)
