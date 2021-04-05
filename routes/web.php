@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [GameController::class, 'index']);
+Route::get('/show/{slug}', [GameController::class, 'show'])->name('game.show');
 
 // Route::get('/', function () {
 //     return view('index');

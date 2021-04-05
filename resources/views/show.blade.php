@@ -4,28 +4,61 @@
     <div class="container mx-auto px-4">
         <div class="game-details border-b border-gray-800 pb-12 flex flex-col lg:flex-row">
             <div class="flex-none">
-                <img src="/img/horizon.jpg" alt="cover">
+                <img src="{{ Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']) }}" alt="cover">
             </div>
-            <div class="lg:ml-12 lg:mr-40 ">
-                <h2 class="font-semibold text-4xl leading-tight mt-1">Final Fantasy VII Remake</h2>
-                <div class="text-gray-400">
-                    <span>Adventure, RPG</span>
-                    &middot;
-                    <span>Square Enix</span>
-                    &middot;
-                    <span>Playstation 4</span>
+            <div class="lg:ml-12 lg:mr-30 ">
+                <h2 class="font-semibold text-4xl leading-tight mt-1">{{ $game['name'] }}</h2>
+                <div class="text-gray-400 flex flex-col">
+                    <div class="flex">
+                        <h4 class="font-bold">Genres &nbsp;</h4>
+                        <span>
+                            @foreach ($game['genres'] as $genre)
+                                {{ $genre['name'] }},
+                            @endforeach
+                        </span>
+                    </div>
+                    <div class="flex">
+                        <h4 class="font-bold">Companies &nbsp;</h4>
+                        <span>
+                            @foreach ($game['involved_companies'] as $company)
+                                {{ $company['company']['name'] }},
+                            @endforeach
+                        </span>
+                    </div>
+                    <div class="flex">
+                        <h4 class="font-bold">Platform &nbsp;</h4>
+                        <span>
+                            @foreach ($game['platforms'] as $platform)
+                                {{ $platform['abbreviation'] }} &middot;
+                            @endforeach
+                        </span>
+
+                    </div>
+
                 </div>
                 <div class="flex flex-wrap items-center mt-8 ">
                     <div class="flex items-center">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="flex font-semibold text-xs items-center justify-center h-full">90%</div>
+                            <div class="flex font-semibold text-xs items-center justify-center h-full">
+                                @if (array_key_exists('rating', $game))
+                                    {{ round($game['rating']) . '%' }}
+                                @else
+                                    0%
+                                @endif
+                            </div>
                         </div>
                         <div class="ml-4 text-xs">Member <br> Score</div>
 
                     </div>
                     <div class="flex items-center ml-12">
                         <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="flex font-semibold text-xs items-center justify-center h-full">92%</div>
+                            <div class="flex font-semibold text-xs items-center justify-center h-full">
+                                @if (array_key_exists('aggregated_rating', $game))
+                                    {{ round($game['aggregated_rating']) . '%' }}
+                                @else
+                                    0%
+                                @endif
+                            </div>
                         </div>
                         <div class="ml-4 text-xs">Critics <br> Score</div>
 
@@ -74,12 +107,10 @@
                     </div>
                 </div>
                 <div class="mt-12">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, cupiditate voluptate obcaecati
-                    officiis alias reiciendis corporis quas iusto tempore amet, ad optio sapiente. Maxime necessitatibus
-                    odio voluptatum iusto, ipsam rerum?
+                    {{ $game['summary'] }}
                 </div>
                 <div class="mt-12">
-                    <button
+                    {{-- <button
                         class="flex bg-blue-500 text-white font-semibold px-6 py-3 hover:bg-blue-600 rounded transition ease-in-out duration-150">
                         <svg class="w-6 fill-current" viewBox="0 0 24 24">
                             <path d="M0 0h24v24H0z" fill="none"></path>
@@ -88,7 +119,27 @@
                             </path>
                         </svg>
                         <span class="ml-2">Play Trailer</span>
-                    </button>
+                    </button> --}}
+
+                    @if (isset($game['videos']))
+                        @foreach ($game['videos'] as $video)
+                            @if (in_array('Trailer', $video))
+                                <a href="https://youtube.com/watch/{{ $video['video_id'] }}"
+                                    class="inline-flex bg-blue-500 text-white font-semibold px-6 py-3 hover:bg-blue-600 rounded transition ease-in-out duration-150">
+                                    <svg class="w-6 fill-current" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z">
+                                        </path>
+                                    </svg>
+                                    <span class="ml-2">Play Trailer</span>
+                                </a>
+                                @break
+                            @endif
+
+                        @endforeach
+                    @endif
+
                 </div>
             </div>
         </div> <!-- end game details -->

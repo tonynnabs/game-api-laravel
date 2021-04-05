@@ -29,7 +29,30 @@
         </div>
 
     @empty
-        <div class="spinner mt-8"></div>
+        @foreach (range(1, 3) as $game)
+            <div class="game bg-gray-800 rounded-lg shadow-md flex p-6">
+                <div class="relative flex-none">
+                    <div class="bg-gray-700 w-32 lg:w-48 h-40 lg:h-56"></div>
+                </div>
+                <div class="ml-6 lg:ml-12">
+                    <div class="inline-block text-lg font-semibold text-transparent bg-gray-700 rounded mt-4 leading-tight">
+                        Title goes here</div>
+                    <div class="space-y-4 mt-8 hidden lg:block">
+                        <span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet
+                            consectetur
+                            terdffe</span>
+                        <span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet
+                            consectetur
+                            terdffe</span>
+                        <span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet
+                            consectetur
+                            terdffe</span>
+                    </div>
+                </div>
+
+            </div>
+        @endforeach
+
 
     @endforelse
 
