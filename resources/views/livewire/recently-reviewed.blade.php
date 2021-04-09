@@ -6,10 +6,10 @@
                         class="w-48 hover:opacity-75 transition ease-in-out duration-200"></a>
 
                 @if (isset($game['rating']))
-                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
+                    <div id="review_{{ $game['slug'] }}"
+                        class="absolute bottom-0 right-0 w-16 h-16 bg-gray-900 rounded-full"
                         style="right:-20px; bottom: -20px;">
-                        <div class="font-semibold text-xs flex justify-center items-center h-full">
-                            {{ $game['rating'] }} </div>
+
                     </div>
                 @endif
 
@@ -19,7 +19,7 @@
                     class="block text-lg font-semi-bold leading-tight hover:text-gray-400 mt-4">{{ $game['name'] }}</a>
                 <div class="text-gray-400 mt-1">{{ $game['platforms'] }}</div>
 
-                <p class="text-gray-400 mt-6 hidden lg:block">{{ $game['summary'] }}</p>
+                <p class="text-gray-400 mt-6 hidden lg:block">{{ Str::limit($game['summary'], 170) }}</p>
             </div>
 
         </div>
@@ -55,3 +55,9 @@
 
 
 </div>
+
+@push('scripts')
+    @include('partials.rating', [
+    'event' => 'recentlyGameWithRatingAdded',
+    ])
+@endpush

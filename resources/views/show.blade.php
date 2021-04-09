@@ -30,17 +30,29 @@
                 </div>
                 <div class="flex flex-wrap items-center mt-8 ">
                     <div class="flex items-center">
-                        <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="flex font-semibold text-xs items-center justify-center h-full">
-                                {{ $game['memberRating'] }}</div>
+                        <div id="memberRating" class="w-16 h-16 bg-gray-800 rounded-full text-sm relative">
+                            @push('scripts')
+                                @include('partials.rating', [
+                                'slug' => 'memberRating',
+                                'rating' => $game['memberRating'],
+                                'event' => null,
+                                ])
+                            @endpush
+                            {{-- <div class="flex font-semibold text-xs items-center justify-center h-full">
+                                {{ $game['memberRating'] }}</div> --}}
                         </div>
                         <div class="ml-4 text-xs">Member <br> Score</div>
 
                     </div>
                     <div class="flex items-center ml-12">
-                        <div class="w-16 h-16 bg-gray-800 rounded-full">
-                            <div class="flex font-semibold text-xs items-center justify-center h-full">
-                                {{ $game['criticsRating'] }}</div>
+                        <div id="criticsRating" class="w-16 h-16 bg-gray-800 rounded-full relative text-sm">
+                            @push('scripts')
+                                @include('partials.rating', [
+                                'slug' => 'criticsRating',
+                                'rating' => $game['criticsRating'],
+                                'event' => null,
+                                ])
+                            @endpush
                         </div>
                         <div class="ml-4 text-xs">Critics <br> Score</div>
 
@@ -90,9 +102,12 @@
 
                     </div>
                 </div>
-                <div class="mt-12">
-                    {{ $game['summary'] }}
-                </div>
+                @isset($game['summary'])
+                    <div class="mt-12">
+                        {{ $game['summary'] }}
+                    </div>
+                @endisset
+
                 <div class="mt-12">
                     {{-- <button
                         class="flex bg-blue-500 text-white font-semibold px-6 py-3 hover:bg-blue-600 rounded transition ease-in-out duration-150">
@@ -145,10 +160,11 @@
         <div class="similar-games  mt-8">
             <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Similar Games</h2>
             <div class="popular-games text-sm grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-12  ">
-
-                @foreach ($game['similarGames'] as $game)
-                    <x-game-card :game="$game" />
-                @endforeach
+                @isset($game['similarGames'])
+                    @foreach ($game['similarGames'] as $game)
+                        <x-game-card :game="$game" />
+                    @endforeach
+                @endisset
 
 
 

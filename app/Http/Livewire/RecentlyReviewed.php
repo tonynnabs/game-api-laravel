@@ -30,6 +30,14 @@ class RecentlyReviewed extends Component
 
         $this->recentlyReviewed = $this->formatForView($recentlyReviewedUnformatted);
 
+        collect($this->recentlyReviewed)->filter(function($game){
+            return $game['rating'];
+        })->each(function ($game){
+            $this->emit('recentlyGameWithRatingAdded', [
+                'slug' => 'review_'.$game['slug'],
+                'rating' => $game['rating'] / 100,
+            ]);
+        });
     }
 
 
@@ -44,7 +52,7 @@ class RecentlyReviewed extends Component
         return collect($game)->map(function($game){
             return collect($game)->merge([
                 'coverImageUrl' => Str::replaceFirst('thumb', 'cover_big', $game['cover']['url']),
-                'rating' => isset($game['rating']) ? round($game['rating']) . '%' : null,
+                'rating' => isset($game['rating']) ? round($game['rating']) : null,
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
             ]);
         })->toArray();

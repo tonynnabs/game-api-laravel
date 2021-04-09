@@ -25,20 +25,7 @@
 
             </div>
             <div class="flex items-center mt-6 lg:mt-0">
-                <div class="relative">
-                    <input type="text" placeholder="Search..."
-                        class="bg-gray-800 text-sm rounded-full pl-8 px-3 w-64 focus:outline-none focus:ring-2 focus:ring-yellow-600 py-1">
-
-                    <div class="absolute top-0 flex items-center h-full ml-2">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class=" text-gray-400 w-4" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-search">
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                    </div>
-                </div>
+                <livewire:search-dropdown />
                 <div class="ml-6">
                     <a href="#"><img src="/img/avatar.jpg" alt="Avatar" class="rounded-full w-8"></a>
                 </div>
@@ -56,6 +43,9 @@
         </div>
     </footer>
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="/js/app.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

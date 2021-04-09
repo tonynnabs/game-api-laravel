@@ -10,3 +10,9 @@
     @endforelse
 
 </div>
+
+@push('scripts')
+    @include('partials.rating', [
+    'event' => 'gameWithRatingAdded',
+    ])
+@endpush
