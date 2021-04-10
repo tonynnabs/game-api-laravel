@@ -130,6 +130,30 @@
                             </svg>
                             <span class="ml-2">Play Trailer</span>
                         </a>
+
+                        <div style="background-color:rgba(0,0,0,.5);"
+                            class="fixed top-0 left-0 w-full h-full flex items-center shadow-lg overflow-y-auto">
+                            <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
+                                <div class="bg-gray-900 rounded">
+                                    <div class="flex justify-end pr-4 pt-2">
+                                        <button class="text-3xl leading-none hover:text-gray-300">
+                                            &times;
+                                        </button>
+                                        <div class="modal-body px-8 py-8">
+                                            <div class="responsive-container overflow-hidden relative"
+                                                style="padding-top: 56.25%">
+
+                                                <iframe class="responsive-iframe absolute top-0 left-0 w-full h-full"
+                                                    width="560" height="315" src="https://www.youtube.com/embed/Fp9pNPdNwjI"
+                                                    style="border:0;" allow="autoplay; encrypted-media" allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     @endif
 
 
